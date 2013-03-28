@@ -38,3 +38,9 @@ post '/play' do
 	redirect to '/play'		
 	end
 end
+
+get '/stats' do
+	number_of_games_played = RestClient.get 'http://api.openkeyval.org/mxit-gallows-number-of-games-played'
+	unique_players = RestClient.get 'http://api.openkeyval.org/mxit-gallows-players'
+	erb 'Games played: ' + number_of_games_played + '<br > Unique users: ' + unique_players
+end
