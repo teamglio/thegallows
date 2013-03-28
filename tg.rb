@@ -14,6 +14,10 @@ require_relative 'lib/mxit.rb'
 
 enable :sessions
 
+before do
+  @mixup_ad = RestClient.get 'http://serve.mixup.hapnic.com/9786245'
+end
+
 get '/' do
 	@player = Player.new(Mxit.new(request.env))
 	session[:player] = @player
