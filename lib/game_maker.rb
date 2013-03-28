@@ -45,6 +45,7 @@ class GameMaker
 
     def self.create_game(player)
         track_game
+        track_player(player)
         case player.score
         when SCORE_RANGE_LEVEL_1
             Game.new(player,rand(WORD_RANGE_LEVEL_1),GUESSES_LEVEL_1,CLUES_LEVEL_1)
@@ -66,5 +67,12 @@ class GameMaker
         number_of_games_played += 1 
         FlyingV.post('mxit-gallows-number-of-games-played', {:number_of_games_played => number_of_games_played})
         #FlyingV.post('mxit-gallows-number-of-games-played', {:number_of_games_played => 0})
+    end
+
+    def self.track_player(player)
+        players = FlyingV.get('mxit-gallows-players')['players']
+        players.push(player.id) 
+        FlyingV.post('mxit-gallows-players', {:players => players.uniq})
+        #FlyingV.post('mxit-gallows-players', {:players => ''})
     end
 end

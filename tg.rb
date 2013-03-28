@@ -1,10 +1,10 @@
-#todo
+#TODO
 # leaderboard
 # instructions
 # trade in a guess for a clue
 # nicer formatted missed guesses
 # gamification
-# better logging system
+# better logging / database
 
 require 'sinatra'
 require_relative 'lib/player.rb'
