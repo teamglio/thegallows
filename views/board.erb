@@ -1,0 +1,18 @@
+<%= @player.name + ' | Score: ' + @player.score.to_s + ' | Level ' + GameMaker.get_level(@player).to_s %> | <a href='/help.html'>Help</a>
+<hr />
+<br />
+<b><%= @game.misses.size %></b> of <%= @game.number_of_allowed_misses %></b> guesses left. Wrong guesses: <%= @game.misses.inspect %>
+<br />
+<br />
+A <%= @game.word.size %>-letter word: <b><%= @game.board %></b>
+<br />
+<br />
+<%= '<a href="/">Skip</a> word' unless @game.state %>
+<%= 'You <b>' + @game.state.to_s + '</b>! You got <b>' + @game.score.to_s + '</b> points. Play <a href="/">again</a>.' if @game.state == :won %> 
+<%= "You <b>" + @game.state.to_s + "</b>. The word was ''<b>" + @game.word + "</b>''. That's OK, play <a href='/'>again</a>." if @game.state == :lost %>
+<br />
+<br />
+<form action="play" method="post" enctype="multipart/form-data">
+	<input type="text" name="play" />
+	<input type="submit" name="Done" value="Done" />
+</form>
