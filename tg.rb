@@ -7,6 +7,7 @@
 # better logging / database
 
 require 'sinatra'
+require 'rest-client'
 require_relative 'lib/player.rb'
 require_relative 'lib/game.rb'
 require_relative 'lib/game_maker.rb'
