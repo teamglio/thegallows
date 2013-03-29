@@ -21,10 +21,14 @@ class Game
         number_of_clues.times do 
             guess(@word.split('')[rand(@word.size)])
         end
+        @number_of_clues = number_of_clues
     end
 
     def guess(guess)
         unless game_over?
+            guess.downcase!
+            guess.strip!
+            guess = guess[0]
             if @word.include?(guess)
                 @word.split('').each_with_index do |letter, index|
                     if letter == guess
@@ -49,7 +53,7 @@ class Game
     end
 
     def score
-        @word.size + (@number_of_allowed_misses - @misses.size)
+        @word.size + (@number_of_allowed_misses - @misses.size) - @number_of_clues
     end
 
     def save_score

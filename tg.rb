@@ -8,6 +8,7 @@
 
 require 'sinatra'
 require 'rest-client'
+require 'flyingv'
 require_relative 'lib/player.rb'
 require_relative 'lib/game.rb'
 require_relative 'lib/game_maker.rb'
@@ -39,8 +40,14 @@ post '/play' do
 	end
 end
 
+post '/help' do
+	erb :help
+end
+
 get '/stats' do
-	number_of_games_played = RestClient.get 'http://api.openkeyval.org/mxit-gallows-number-of-games-played'
-	unique_players = RestClient.get 'http://api.openkeyval.org/mxit-gallows-players'
-	erb 'Games played: ' + number_of_games_played + '<br > Unique users: ' + unique_players
+	data = FlyingV.get ('mxit-gallows-number-of-games-played')
+	number_of_games_played = data['number_of_games_played']
+	data = FlyingV.get ('mxit-gallows-players')
+	unique_players = data.values.uniq.first.size
+	erb "Games played: #{number_of_games_played}<br /> Unique users: #{unique_players}<br /> Games per player: #{number_of_games_played.to_f/unique_players.to_f}"
 end
