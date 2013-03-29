@@ -73,6 +73,7 @@ class GameMaker
         players = FlyingV.get('mxit-gallows-players')['players']
         players.push(player.id) 
         FlyingV.post('mxit-gallows-players', {:players => players.uniq})
-        #FlyingV.post('mxit-gallows-players', {:players => ''})
+        #players = []
+        #FlyingV.post('mxit-gallows-players', {:players => players})
     end
 end

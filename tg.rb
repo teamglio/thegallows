@@ -40,7 +40,7 @@ post '/play' do
 	end
 end
 
-post '/help' do
+get '/help' do
 	erb :help
 end
 
