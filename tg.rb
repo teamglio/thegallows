@@ -5,6 +5,7 @@
 # nicer formatted missed guesses
 # gamification
 # better logging / database
+# feedback mechanism
 
 require 'sinatra'
 require 'rest-client'
