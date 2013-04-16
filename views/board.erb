@@ -7,10 +7,9 @@
 A <%= @game.word.size %>-letter word: <b><%= @game.board %></b>
 <br />
 <br />
-<%= 'Guess a letter or <a href="/">skip</a> word' unless @game.state %>
+<%= 'Guess a letter or <a href="/">skip</a> word.' unless @game.state %>
 <%= 'You <b>' + @game.state.to_s + '</b>! You got <b>' + @game.score.to_s + '</b> points. Play <a href="/">again</a>.' if @game.state == :won %> 
 <%= "You <b>" + @game.state.to_s + "</b>. The word was ''<b>" + @game.word + "</b>''. That's OK, play <a href='/'>again</a>." if @game.state == :lost %>
-<br />
 <br />
 <form action="play" method="post" enctype="multipart/form-data">
 	<input type="text" name="play" />
